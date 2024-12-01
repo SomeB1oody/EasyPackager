@@ -94,6 +94,7 @@ In the second field, **Enter the dependency's/dependencies' package name (separa
 The first check box, `Generates a single executable file`, determines whether the output will consist of a single `.exe` file. If not enable, the generated files will include the `.exe` file along with additional `.dll` dynamic link files. In this case, the program will only run if both the executable file and the dynamic link files are present. If enable, only a single `.exe` file will be generated, which can be executed directly without requiring any additional dynamic link files. It is highly recommended to select this option.
 第一个单选框`Generates a single executable file`是指生成文件是不是只生成一个`.exe`文件，如果不选，生成的文件除了`.exe`还有其他`.dll`的动态链文件，只有动态链文件和可执行文件同时在时这个程序才能执行；如果勾选上，那么生成的文件中就会只有一个`.exe`文件，直接点击就可执行，不需要其他动态链，强烈建议勾选上。
 
+The second check box, `Runs the program while opening a command line window`, means that when the generated executable file is opened, it will display a command line window. If your program does not have a GUI (such as `wx` or `Qt`) and includes interactive elements with the user (such as `input()`), it must be enabled.
 第二个单选框`Runs the program while opening a command line window`是指生成的可执行文件打开后会显示命令行，如果你的程序没有GUI（比如`wx`或`Qt`），而且有与用户交互的部分（比如`input()`），就必须打开
 ![GUI_cmd](https://github.com/user-attachments/assets/4bc788b8-12c9-4d77-a350-dec603035672)
 
