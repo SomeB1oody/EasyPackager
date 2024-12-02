@@ -2,6 +2,14 @@ import subprocess
 import os
 from pyautogui import write
 import time
+import ctypes
+
+def is_admin():
+    try:
+        # 尝试使用管理员权限运行某个API
+        return ctypes.windll.shell32.IsUserAnAdmin() != 0
+    except:
+        return False
 
 def run_as_admin(program_path):
     try:
@@ -54,6 +62,10 @@ def main():
     print(notice_for_use)
     quit_or_not = input()
     if quit_or_not.lower() == 'q':
+        quit()
+
+    if not is_admin():
+        print("Please run this program with administrator privileges.")
         quit()
 
     anaconda_command_line = is_anaconda_installed()
