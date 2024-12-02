@@ -4,6 +4,14 @@ import subprocess
 import re
 import time
 from pyautogui import write
+import ctypes
+
+def is_admin():
+    try:
+        # 尝试使用管理员权限运行某个API
+        return ctypes.windll.shell32.IsUserAnAdmin() != 0
+    except:
+        return False
 
 def is_valid_version(version):
     pattern = r'^\d+(\.\d+){1,2}$'
@@ -48,16 +56,8 @@ class EasyPackagerWX(wx.Frame):
         panel = wx.Panel(self)
         self.vbox = wx.BoxSizer(wx.VERTICAL)
 
-        # 先查找是否有anaconda
-        anaconda_command_line = is_anaconda_installed()
-        if not anaconda_command_line:
-            wx.MessageBox(
-                "No Anaconda found. Please install Anaconda or Miniconda.",
-                "Error", wx.OK | wx.ICON_ERROR)
-            return
-
         self.vbox.Add(wx.StaticText(
-            panel, label=f"Anaconda: {anaconda_command_line}" + is_anaconda_installed()),
+            panel, label=f"Anaconda: {is_anaconda_installed()}" + is_anaconda_installed()),
             flag=wx.ALL, border=5)
 
         # 新建还是base
@@ -100,6 +100,7 @@ class EasyPackagerWX(wx.Frame):
             panel, label="Runs the program while opening a command line window"
         )
         self.vbox.Add(self.show_command_line, flag=wx.ALL, border=5)
+        self.show_command_line.SetValue(True)
 
         # 执行按钮
         self.execute_button = wx.Button(panel, label="Execute")
@@ -111,7 +112,7 @@ class EasyPackagerWX(wx.Frame):
         panel.Layout()
 
     def on_select_file(self, event):
-        with wx.FileDialog(None, "Select a video", wildcard="所有文件 (*.*)|*.*",
+        with wx.FileDialog(None, "Select a file", wildcard="*.py",
                            style=wx.FD_OPEN | wx.FD_FILE_MUST_EXIST) as dialog:
             if dialog.ShowModal() == wx.ID_OK:
                 self.input_path_text.SetLabel(f"{dialog.GetPath()}")
@@ -180,5 +181,18 @@ if __name__ == "__main__":
     frame = EasyPackagerWX(None)
     frame.SetTitle('Easy Packager with GUI')
     frame.SetSize((600, 425))
+    # 先查找是否有anaconda
+    anaconda_command_line = is_anaconda_installed()
+    if not anaconda_command_line:
+        wx.MessageBox(
+            "No Anaconda found. Please install Anaconda or Miniconda.",
+            "Error", wx.OK | wx.ICON_ERROR)
+        quit()
+    # 确认有无管理员权限
+    if not is_admin():
+        wx.MessageBox(
+            "Please run this program with administrator privileges.", "Error", wx.OK | wx.ICON_ERROR
+        )
+        quit()
     frame.Show()
     app.MainLoop()
