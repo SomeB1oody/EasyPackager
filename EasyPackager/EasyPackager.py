@@ -4,6 +4,8 @@ from pyautogui import write
 import time
 import ctypes
 
+global anaconda_command_line
+
 def is_admin():
     try:
         # 尝试使用管理员权限运行某个API
@@ -25,6 +27,7 @@ def run_as_admin(program_path):
         print(f"Cannot run as admin: {e}")
 
 def is_anaconda_installed():
+    global anaconda_command_line
     # 查看是否有 anaconda
     anaconda_command_line = ""
     anaconda_paths = [
@@ -40,8 +43,6 @@ def is_anaconda_installed():
             elif os.path.isfile(os.path.join(path, "Anaconda Prompt.lnk")):
                 anaconda_command_line = os.path.join(path, "Anaconda Prompt.lnk")
                 break
-
-    return anaconda_command_line
 
 def main():
     notice_for_use = '''
@@ -66,13 +67,12 @@ def main():
 
     if not is_admin():
         print("Please run this program with administrator privileges.")
-        quit()
 
-    anaconda_command_line = is_anaconda_installed()
+    is_anaconda_installed()
+    global anaconda_command_line
 
     if not anaconda_command_line:
         print("No Anaconda found. Please install Anaconda or Miniconda.")
-        quit()
 
     print(f"Anaconda found: {anaconda_command_line}")
 
