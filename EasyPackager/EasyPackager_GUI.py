@@ -6,6 +6,8 @@ import time
 from pyautogui import write
 import ctypes
 
+global anaconda_command_line
+
 def is_admin():
     try:
         # 尝试使用管理员权限运行某个API
@@ -31,6 +33,7 @@ def run_as_admin(program_path):
         print(f"Cannot run as admin: {e}")
 
 def is_anaconda_installed():
+    global anaconda_command_line
     # 查看是否有 anaconda
     anaconda_command_line = ""
     anaconda_paths = [
@@ -47,8 +50,6 @@ def is_anaconda_installed():
                 anaconda_command_line = os.path.join(path, "Anaconda Prompt.lnk")
                 break
 
-    return anaconda_command_line
-
 class EasyPackagerWX(wx.Frame):
     def __init__(self, *args, **kw):
         super(EasyPackagerWX, self).__init__(*args, **kw)
@@ -56,8 +57,10 @@ class EasyPackagerWX(wx.Frame):
         panel = wx.Panel(self)
         self.vbox = wx.BoxSizer(wx.VERTICAL)
 
+        global anaconda_command_line
+
         self.vbox.Add(wx.StaticText(
-            panel, label=f"Anaconda: {is_anaconda_installed()}" + is_anaconda_installed()),
+            panel, label=f"Anaconda: {anaconda_command_line}"),
             flag=wx.ALL, border=5)
 
         # 新建还是base
@@ -127,7 +130,7 @@ class EasyPackagerWX(wx.Frame):
             self.py_ver.Enable(True)
 
     def on_execute_button(self, event):
-        anaconda_command_line = is_anaconda_installed()
+        global anaconda_command_line
         if_create =True if self.if_create.GetSelection() == 1 else False
         py_path = self.selected_file
 
@@ -177,22 +180,21 @@ class EasyPackagerWX(wx.Frame):
 
 
 if __name__ == "__main__":
+    global anaconda_command_line
     app = wx.App()
-    frame = EasyPackagerWX(None)
-    frame.SetTitle('Easy Packager with GUI')
-    frame.SetSize((600, 425))
     # 先查找是否有anaconda
-    anaconda_command_line = is_anaconda_installed()
+    is_anaconda_installed()
     if not anaconda_command_line:
         wx.MessageBox(
             "No Anaconda found. Please install Anaconda or Miniconda.",
             "Error", wx.OK | wx.ICON_ERROR)
-        quit()
     # 确认有无管理员权限
     if not is_admin():
         wx.MessageBox(
             "Please run this program with administrator privileges.", "Error", wx.OK | wx.ICON_ERROR
         )
-        quit()
+    frame = EasyPackagerWX(None)
+    frame.SetTitle('Easy Packager with GUI')
+    frame.SetSize((600, 425))
     frame.Show()
     app.MainLoop()
