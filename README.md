@@ -20,8 +20,9 @@ Due to my limited capabilities, the code may have some imperfections. I warmly w
 **EasyPackager** allows users to choose between compiling in the conda base environment or creating a new virtual environment (requiring users to specify the necessary dependencies). Additionally, the program provides options to enable "single executable output only" (-F) and "open the command line during execution" (-w).
 **EasyPackager**支持用户选择在conda的base环境抑或是创建一个新虚拟环境（需要用户输入所需的依赖项）来编译。同时，程序也开放了“是否只输出单个可执行文件”（-F）和“是否在运行同时打开命令行”（-w）的选项。
 
-Currently, **EasyPackager** does not support merging and packaging multiple `.py` files or adjusting parameters beyond the -F and -w options (as the tool is designed to be beginner-friendly). However, future updates may bring new features.
-**EasyPeasyPackager**暂不支持多个py文件的合并编译打包也不支持除了-F和-w两个选项之外的参数调节（毕竟这个程序旨在易于上手）,但未来说不定会更新。
+**PeasyPackager** is now available. PeasyPackager is an advanced version of EasyPackager, offering support for adding icons(.ico) to programs and packaging multiple Python files into a single executable.
+**PeasyPackager**现已推出！ PeasyPackager是EasyPackager的高级版本，支持向程序添加图标(.ico)以及将多个 Python 文件打包到单个可执行文件中。
+
 
 For a detailed user guide, please refer to the User Guide.
 如需要详细的用户指南，请移步至用户指南。
