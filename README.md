@@ -62,11 +62,14 @@ A brief digression: If you want to use conda to manage your dependencies, downlo
 
 - After installation, make sure to check the Windows Start menu for **Anaconda Prompt** or **Anaconda Powershell Prompt**. If you see either of them, the installation was successful.
   安装好后请务必检查Windows的开始菜单上有没有**Anaconda Prompt**或者**Anaconda Powershell Prompt**。如果有，那就是对的。
+  
 ![Start_menu](https://github.com/user-attachments/assets/bf126aa6-7033-4a8d-b0a4-3c24055928fd)
 
 ## 4.1 Use EasyPackager
 ### 1. Open EasyPackager as an admin.
 Now Let me explain the meaning of each option.
+现在我来解释每个选项的意思
+
 ![EP](https://github.com/user-attachments/assets/3d2c35a6-e2b6-426b-baae-c4f511a2b696)
 
 **Base environment** vs. **create new environment** **Base环境**和**创建新环境**的对比
