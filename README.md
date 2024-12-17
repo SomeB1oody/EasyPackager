@@ -115,6 +115,18 @@ At this point, navigate to the location of your Python file, and you will see se
 此时打开你的python文件位置，你就会看到多了几个文件夹和文件，可执行文件就在叫做`dist`的文件夹中。
 ![folder](https://github.com/user-attachments/assets/6f04a9f9-a178-40ee-a0f2-1fb439199ddb)
 
+### 7. About PeasyPackager 关于PeasyPackager
+Compared to EasyPackager, PeasyPackager has a few additional options, while everything else remains exactly the same. Here, only the additional options will be introduced.
+PeasyPackager相较于EasyPackager多了几个可选项，其余完全相同，这里就只介绍多出的选项。
+
+The "Add icon for the program" option allows users to add an icon to the packaged program. Only `.ico` files are supported as input.
+“Add icon for the program”允许用户为打包好的程序添加图标，输入仅支持`.ico`文件
+![PeasyPackager_ico](https://github.com/user-attachments/assets/18331bbf-2069-47e4-a4bb-eff798f9d6b3)
+
+The "Package multiple Python files" option allows users to package multiple `.py` files by simply selecting the paths of the `.py` files.
+“Package multiple Python files允许用户进行多`.py`文件的打包，只要选择`.py`文件的路径即可
+![PeasyPackager_multi_py](https://github.com/user-attachments/assets/9b0232b5-59aa-47d7-a089-c618bfeaf315)
+
 ---
 
 ## 5. Contribution 贡献
